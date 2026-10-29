@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ScamShield - Scan. Check. Stay Safe. | Digital Safety Companion</title>
+  <meta name="description"
+    content="ScamShield is your digital safety companion. Scan messages, links, websites, and QR codes with instant rule-based cybersecurity analysis. 100% client-side, zero tracking.">
+
+  <!-- Modern Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <div class="app-container">
+    <!-- ==================== DESKTOP SIDEBAR ==================== -->
+    <aside class="desktop-sidebar" aria-label="Desktop Navigation">
+      <div class="brand-badge" onclick="App.navigateTo('home')">
+        <div class="brand-icon-shield">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <path d="M12 8v4" />
+            <path d="M12 16h.01" />
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>ScamShield</h1>
+          <p>Scan. Check. Stay Safe.</p>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a class="nav-link active" data-target="home" onclick="App.navigateTo('home')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-link" data-target="history" onclick="App.navigateTo('history')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 14 14" />
+          </svg>
+          <span>Scan History</span>
+        </a>
+        <a class="nav-link" data-target="awareness" onclick="App.navigateTo('awareness')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+          </svg>
+          <span>Awareness & Quiz</span>
+        </a>
+        <a class="nav-link" data-target="profile" onclick="App.navigateTo('profile')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-status-pill">
+        <div class="status-indicator-dot"></div>
+        <div>
+          <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary);">Shield Active</div>
+          <div style="font-size: 0.7rem; color: var(--text-muted);">Client Rule Engine Online</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ==================== MAIN VIEWPORT ==================== -->
+    <div class="main-viewport">
+
+      <!-- Top Mobile / App Header -->
+      <header class="app-header">
+        <div class="brand-badge" onclick="App.navigateTo('home')">
+          <div class="brand-icon-shield">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              <path d="M9 12l2 2 4-4" />
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1>ScamShield</h1>
+            <p>Your Digital Safety Companion</p>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button class="icon-btn" id="btn-open-notifications" aria-label="Notifications"
+            onclick="App.toggleDrawer(true)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+            </svg>
+            <span class="badge-dot"></span>
+          </button>
+
+          <button class="icon-btn" id="btn-theme-quick-toggle" aria-label="Toggle Theme" onclick="App.toggleTheme()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5" />
+              <path
+                d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
+            </svg>
+          </button>
+
+          <button class="icon-btn" aria-label="Profile" onclick="App.navigateTo('profile')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Views Container -->
+      <main class="view-container">
+
+        <!-- ==================== 1. HOME SCREEN ==================== -->
+        <section id="view-home" class="screen-view active">
+
+          <!-- Hero Banner Card -->
+          <div class="hero-card">
+            <div class="hero-content">
+              <div class="hero-pill">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
+                Stay Safe
+              </div>
+              <h2>Not sure if it’s safe?<br>Let’s check it for you!</h2>
+              <p>Detect scams and phishing threats before they reach your wallet or identity.</p>
+            </div>
+            <div class="hero-shield-visual">
+              <div class="shield-orb">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-value" id="stat-scans-today">0</div>
+              <div class="stat-label">Scans Today</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="stat-total-scans">0</div>
+              <div class="stat-label">Total Scans</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value risk-num" id="stat-high-risk">0</div>
+              <div class="stat-label">High Risk</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="stat-qr-created">0</div>
+              <div class="stat-label">QR Created</div>
+            </div>
+          </div>
+
+          <!-- Main Feature Actions Grid -->
+          <div class="section-title-wrap">
+            <div class="section-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              Security Checkpoints
+            </div>
+          </div>
+
+          <div class="features-grid">
+
+            <!-- 1. Check Message -->
+            <div class="feature-action-card" onclick="App.navigateTo('message')">
+              <div class="feature-icon-box icon-msg">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                  <path d="M8 9h8M8 13h5" />
+                </svg>
+              </div>
+              <div class="feature-text-box">
+                <h3>Check Message <span class="card-chevron">→</span></h3>
+                <p>Scan SMS or text for urgency, OTP, and scam patterns</p>
+              </div>
+            </div>
+
+            <!-- 2. Check Link -->
+            <div class="feature-action-card" onclick="App.navigateTo('link')">
+              <div class="feature-icon-box icon-link">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                </svg>
+              </div>
+              <div class="feature-text-box">
+                <h3>Check Link <span class="card-chevron">→</span></h3>
+                <p>Analyze any URL for spoofed domains & deceptive redirects</p>
+              </div>
+            </div>
+
+            <!-- 3. Check Website -->
+            <div class="feature-action-card" onclick="App.navigateTo('website')">
+              <div class="feature-icon-box icon-web">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg>
+              </div>
+              <div class="feature-text-box">
+                <h3>Check Website <span class="card-chevron">→</span></h3>
+                <p>Verify website domain structure and safety indicators</p>
+              </div>
+            </div>
+
+            <!-- 4. Scan QR Code -->
+            <div class="feature-action-card" onclick="App.navigateTo('qrscan')">
+              <div class="feature-icon-box icon-qrscan">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="5" height="5" x="3" y="3" rx="1" />
+                  <rect width="5" height="5" x="16" y="3" rx="1" />
+                  <rect width="5" height="5" x="3" y="16" rx="1" />
+                  <path d="M21 16h-3a2 2 0 0 0-2 2v3" />
+                  <path d="M21 21v.01" />
+                  <path d="M12 7v3a2 2 0 0 1-2 2H7" />
+                  <path d="M3 12h.01" />
+                  <path d="M12 3h.01" />
+                  <path d="M12 16v.01" />
+                  <path d="M16 12h1" />
+                  <path d="M21 12v.01" />
+                  <path d="M12 21v-1" />
+                </svg>
+              </div>
+              <div class="feature-text-box">
+                <h3>Scan QR Code <span class="card-chevron">→</span></h3>
+                <p>Camera or image upload scanner to detect quishing traps</p>
+              </div>
+            </div>
+
+            <!-- 5. Create QR Code -->
+            <div class="feature-action-card" onclick="App.navigateTo('qrcreate')">
+              <div class="feature-icon-box icon-qrcreate">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="16" />
+                  <line x1="8" y1="12" x2="16" y2="12" />
+                </svg>
+              </div>
+              <div class="feature-text-box">
+                <h3>Create QR <span class="card-chevron">→</span></h3>
+                <p>Generate clean QR codes & verify safety with 1-click test</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Security Status Card -->
+          <div class="security-status-card">
+            <div class="status-card-header">
+              <div class="status-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  style="color: var(--risk-safe);">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                Security Status
+              </div>
+              <span class="status-badge">System Optimal</span>
+            </div>
+            <div class="status-checklist">
+              <div class="checklist-item">
+                <div class="check-icon-circle">✓</div>
+                <span>Message Scanner Ready</span>
+              </div>
+              <div class="checklist-item">
+                <div class="check-icon-circle">✓</div>
+                <span>Link Scanner Ready</span>
+              </div>
+              <div class="checklist-item">
+                <div class="check-icon-circle">✓</div>
+                <span>Website Checker Ready</span>
+              </div>
+              <div class="checklist-item">
+                <div class="check-icon-circle">✓</div>
+                <span>QR Scanner Ready</span>
+              </div>
+              <div class="checklist-item">
+                <div class="check-icon-circle">✓</div>
+                <span>QR Generator Ready</span>
+              </div>
+              <div class="checklist-item">
+                <div class="check-icon-circle">✓</div>
+                <span>Zero Cloud Logging Mode Active</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Awareness Promo Banner -->
+          <div class="awareness-banner" onclick="App.navigateTo('awareness')">
+            <div class="banner-left">
+              <div class="banner-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                </svg>
+              </div>
+              <div class="banner-info">
+                <h4>Stay Informed. Stay Safer.</h4>
+                <p>Learn how to spot OTP, package, and urgency scams before hackers act.</p>
+              </div>
+            </div>
+            <span style="color: var(--accent-purple-bright); font-size: 1.2rem;">→</span>
+          </div>
+
+          <!-- Recent Scans Snippet on Home -->
+          <div class="section-title-wrap">
+            <div class="section-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 14 14" />
+              </svg>
+              Recent Scans
+            </div>
+            <a href="javascript:void(0)" onclick="App.navigateTo('history')"
+              style="color: var(--accent-blue-bright); font-size: 0.8rem; font-weight: 600; text-decoration: none;">View
+              All</a>
+          </div>
+          <div id="home-recent-scans-list" class="history-list">
+            <!-- Populated via JS -->
+          </div>
+
+        </section>
+
+        <!-- ==================== 2. CHECK MESSAGE SCREEN ==================== -->
+        <section id="view-message" class="screen-view">
+          <div class="view-header">
+            <button class="back-btn" onclick="App.navigateTo('home')" aria-label="Go Back">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+              </svg>
+            </button>
+            <div class="view-header-text">
+              <h2>Check Message</h2>
+              <p>Paste or type the SMS, email, or message you received.</p>
+            </div>
+          </div>
+
+          <div class="form-card">
+            <label class="field-label" for="input-message">Message Content</label>
+            <textarea id="input-message" class="cyber-textarea"
+              placeholder="e.g. URGENT: Your bank account will be suspended today. Click http://secure-login.pro to verify..."
+              oninput="App.updateCharCount('input-message', 'msg-char-count')"></textarea>
+            <div class="input-footer">
+              <span id="msg-char-count">0 / 1000 characters</span>
+            </div>
+
+            <div class="btn-row">
+              <button class="btn-primary" onclick="App.handleScanMessage()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z" />
+                </svg>
+                Scan Message
+              </button>
+              <button class="btn-secondary" onclick="App.clearMessageInput()">Clear</button>
+            </div>
+          </div>
+
+          <!-- Examples -->
+          <div class="examples-section">
+            <div class="examples-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="16" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg>
+              Try an Example
+            </div>
+            <div class="example-chips-list">
+              <div class="example-chip" onclick="App.loadDemoMessage('bank-fraud')">
+                <div class="example-chip-content">
+                  <span class="example-chip-icon">🏦</span>
+                  <span>Bank Fraud Suspension Alert</span>
+                </div>
+                <span class="example-chip-tag tag-risk">High Risk Sample</span>
+              </div>
+              <div class="example-chip" onclick="App.loadDemoMessage('delivery-scam')">
+                <div class="example-chip-content">
+                  <span class="example-chip-icon">📦</span>
+                  <span>Postal / Parcel Redelivery Scam</span>
+                </div>
+                <span class="example-chip-tag tag-risk">High Risk Sample</span>
+              </div>
+              <div class="example-chip" onclick="App.loadDemoMessage('lottery-prize')">
+                <div class="example-chip-content">
+                  <span class="example-chip-icon">🎁</span>
+                  <span>Lottery Prize & OTP Request</span>
+                </div>
+                <span class="example-chip-tag tag-risk">High Risk Sample</span>
+              </div>
+              <div class="example-chip" onclick="App.loadDemoMessage('safe-friend')">
+                <div class="example-chip-content">
+                  <span class="example-chip-icon">💬</span>
+                  <span>Safe Casual Chat with Friend</span>
+                </div>
+                <span class="example-chip-tag tag-safe">Safe Sample</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="disclaimer-note">
+            <strong>Rule-based Analysis:</strong> ScamShield evaluates urgency keywords, credential solicitation, OTP
+            triggers, and deceptive link structures using deterministic heuristics.
+          </div>
+        </section>
+
+        <!-- ==================== 3. CHECK LINK SCREEN ==================== -->
+        <section id="view-link" class="screen-view">
+          <div class="view-header">
+            <button class="back-btn" onclick="App.navigateTo('home')" aria-label="Go Back">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+              </svg>
+            </button>
+            <div class="view-header-text">
+              <h2>Check Link</h2>
+              <p>Analyze any URL for suspicious patterns & spoofing.</p>
+            </div>
+          </div>
+
+          <div class="form-card">
+            <label class="field-label" for="input-link">Enter the URL to scan</label>
+            <div class="input-with-icon">
+              <span class="input-icon-left">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                </svg>
+              </span>
+              <input type="url" id="input-link" class="cyber-input" placeholder="https://example.com/login"
+                autocomplete="off">
+            </div>
+
+            <div class="btn-row">
+              <button class="btn-primary" onclick="App.handleScanLink()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z" />
+                </svg>
+                Scan Link
+              </button>
+              <button class="btn-secondary" onclick="document.getElementById('input-link').value = ''">Clear</button>
+            </div>
+          </div>
+
+          <!-- Examples -->
+          <div class="examples-section">
+            <div class="examples-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="16" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg>
+              Try an Example
+            </div>
+            <div class="example-chips-list">
+              <div class="example-chip" onclick="App.loadDemoLink('fake-login')">
+                <div class="example-chip-content">
+                  <span class="example-chip-icon">🔗</span>
+                  <span>Fake Bank Login (.xyz TLD)</span>
+                </div>
+                <span class="example-chip-tag tag-risk">High Risk</span>
+              </div>
+              <div class="example-chip" onclick="App.loadDemoLink('shortened-scam')">
+                <div class="example-chip-content">
+                  <span class="example-chip-icon">🔗</span>
+                  <span>Shortened Obfuscated URL (tinyurl)</span>
+                </div>
+                <span class="example-chip-tag tag-risk">Suspicious</span>
+              </div>
+              <div class="example-chip" onclick="App.loadDemoLink('ip-hostname')">
+                <div class="example-chip-content">
+                  <span class="example-chip-icon">🔗</span>
+                  <span>Raw Numeric IP Address Host</span>
+                </div>
+                <span class="example-chip-tag tag-risk">High Risk</span>
+              </div>
+              <div class="example-chip" onclick="App.loadDemoLink('safe-amazon')">
+                <div class="example-chip-content">
+                  <span class="example-chip-icon">🛡️</span>
+                  <span>Legitimate Official Amazon Domain</span>
+                </div>
+                <span class="example-chip-tag tag-safe">Safe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="disclaimer-note">
+            <strong>Client-Side Heuristics:</strong> Inspects protocol security, subdomain stacking, deceptive brand
+            impersonation, high-abuse extensions, and credential harvesting patterns without calling external tracking
+            servers.
+          </div>
+        </section>
+
+        <!-- ==================== 4. CHECK WEBSITE SCREEN ==================== -->
+        <section id="view-website" class="screen-view">
+          <div class="view-header">
+            <button class="back-btn" onclick="App.navigateTo('home')" aria-label="Go Back">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+              </svg>
+            </button>
+            <div class="view-header-text">
+              <h2>Check Website</h2>
+              <p>Check a website address for safety indicators.</p>
+            </div>
+          </div>
+
+          <div class="form-card">
+            <label class="field-label" for="input-website">Enter website URL</label>
+            <div class="input-with-icon">
+              <span class="input-icon-left">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg>
+              </span>
+              <input type="text" id="input-website" class="cyber-input" placeholder="e.g. https://example.com"
+                autocomplete="off">
+            </div>
+
+            <div class="btn-row">
+              <button class="btn-primary" onclick="App.handleScanWebsite()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="16" x2="12" y2="12" />
+                  <line x1="12" y1="8" x2="12.01" y2="8" />
+                </svg>
+                Analyze Website
+              </button>
+              <button class="btn-secondary" onclick="document.getElementById('input-website').value = ''">Clear</button>
+            </div>
+          </div>
+
+          <!-- Examples -->
+          <div class="examples-section">
+            <div class="examples-title">Try an Example Website</div>
+            <div class="example-chips-list">
+              <div class="example-chip" onclick="App.loadDemoWebsite('fake-paypal')">
+                <div class="example-chip-content">
+                  <span class="example-chip-icon">⚠️</span>
+                  <span>paypa1-account-secure-verify.top (Typosquatting)</span>
+                </div>
+                <span class="example-chip-tag tag-risk">High Risk</span>
+              </div>
+              <div class="example-chip" onclick="App.loadDemoWebsite('safe-wikipedia')">
+                <div class="example-chip-content">
+                  <span class="example-chip-icon">🌐</span>
+                  <span>https://www.wikipedia.org (Legitimate)</span>
+                </div>
+                <span class="example-chip-tag tag-safe">Safe</span>
+              </div>
+              <div class="example-chip" onclick="App.loadDemoWebsite('safe-github')">
+                <div class="example-chip-content">
+                  <span class="example-chip-icon">🌐</span>
+                  <span>https://github.com (Legitimate)</span>
+                </div>
+                <span class="example-chip-tag tag-safe">Safe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="disclaimer-note">
+            <strong>Important Disclaimer:</strong> This is a basic client-side analysis. A low-risk result does not
+            guarantee that a website is completely safe. Always verify certificates and domain spellings.
+          </div>
+        </section>
+
+        <!-- ==================== 5. SCAN QR CODE SCREEN ==================== -->
+        <section id="view-qrscan" class="screen-view">
+          <div class="view-header">
+            <button class="back-btn" onclick="App.navigateTo('home')" aria-label="Go Back">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+              </svg>
+            </button>
+            <div class="view-header-text">
+              <h2>Scan QR Code</h2>
+              <p>Scan a QR code and check where it leads.</p>
+            </div>
+          </div>
+
+          <!-- Camera Scanner Viewport -->
+          <div class="scanner-viewport-card" id="scanner-view-box">
+            <video id="camera-video" playsinline></video>
+            <canvas id="qr-scan-canvas" style="display: none;"></canvas>
+
+            <div class="scanner-box">
+              <div class="bracket bracket-tl"></div>
+              <div class="bracket bracket-tr"></div>
+              <div class="bracket bracket-bl"></div>
+              <div class="bracket bracket-br"></div>
+              <div class="scan-laser-line"></div>
+            </div>
+
+            <div class="scanner-hint" id="scanner-status-text">
+              Align QR code within frame
+            </div>
+          </div>
+
+          <!-- Scanner Controls -->
+          <div class="scanner-controls-bar">
+            <button class="scanner-btn" id="btn-camera-toggle" onclick="App.toggleCameraStream()">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+                <circle cx="12" cy="13" r="3" />
+              </svg>
+              <span id="camera-btn-label">Start Camera</span>
+            </button>
+
+            <button class="scanner-btn" onclick="document.getElementById('qr-file-input').click()">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="17 8 12 3 7 8" />
+                <line x1="12" y1="3" x2="12" y2="15" />
+              </svg>
+              <span>Upload Image</span>
+            </button>
+
+            <button class="scanner-btn" onclick="App.loadSampleQRScan('phish')">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect width="18" height="18" x="3" y="3" rx="2" />
+                <circle cx="9" cy="9" r="2" />
+                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+              </svg>
+              <span>Sample QR</span>
+            </button>
+          </div>
+
+          <!-- Hidden Image File Input -->
+          <input type="file" id="qr-file-input" accept="image/*" style="display: none;"
+            onchange="App.handleImageUpload(this)">
+
+          <div class="disclaimer-note" style="margin-top: 20px;">
+            <strong>QR Code Safety:</strong> Malicious QR codes (Quishing) trick mobile cameras into navigating to
+            harvesting portals or open unsecured Wi-Fi. ScamShield extracts the content and inspects the payload before
+            you visit.
+          </div>
+        </section>
+
+        <!-- ==================== 6. CREATE QR SCREEN ==================== -->
+        <section id="view-qrcreate" class="screen-view">
+          <div class="view-header">
+            <button class="back-btn" onclick="App.navigateTo('home')" aria-label="Go Back">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+              </svg>
+            </button>
+            <div class="view-header-text">
+              <h2>Create QR Code</h2>
+              <p>Create a QR code for your text, link, message, or contact.</p>
+            </div>
+          </div>
+
+          <!-- Type Tabs -->
+          <div class="tabs-header" id="qr-create-tabs">
+            <button class="tab-btn active" data-type="text" onclick="App.switchQRType('text')">Text</button>
+            <button class="tab-btn" data-type="link" onclick="App.switchQRType('link')">Link</button>
+            <button class="tab-btn" data-type="message" onclick="App.switchQRType('message')">Message</button>
+            <button class="tab-btn" data-type="wifi" onclick="App.switchQRType('wifi')">WiFi</button>
+            <button class="tab-btn" data-type="contact" onclick="App.switchQRType('contact')">Contact</button>
+          </div>
+
+          <!-- Dynamic Form Inputs -->
+          <div class="form-card">
+
+            <!-- Tab: Text -->
+            <div id="qr-form-text" class="qr-form-panel">
+              <label class="field-label">Text Content</label>
+              <textarea id="qr-input-text" class="cyber-textarea" style="min-height: 90px;"
+                placeholder="Enter any text or note to encode...">ScamShield: Scan. Check. Stay Safe.</textarea>
+            </div>
+
+            <!-- Tab: Link -->
+            <div id="qr-form-link" class="qr-form-panel" style="display: none;">
+              <label class="field-label">Website URL</label>
+              <input type="url" id="qr-input-link" class="cyber-input" placeholder="https://scamshield.app"
+                value="https://scamshield.app">
+            </div>
+
+            <!-- Tab: Message -->
+            <div id="qr-form-message" class="qr-form-panel" style="display: none;">
+              <label class="field-label">Recipient Phone Number</label>
+              <input type="tel" id="qr-input-msg-phone" class="cyber-input" placeholder="+1234567890"
+                style="margin-bottom: 12px;">
+              <label class="field-label">Pre-filled Message</label>
+              <textarea id="qr-input-msg-body" class="cyber-textarea" style="min-height: 80px;"
+                placeholder="Hello, I am sending you a secure message."></textarea>
+            </div>
+
+            <!-- Tab: WiFi -->
+            <div id="qr-form-wifi" class="qr-form-panel" style="display: none;">
+              <label class="field-label">WiFi SSID (Network Name)</label>
+              <input type="text" id="qr-input-wifi-ssid" class="cyber-input" placeholder="Home_Network"
+                style="margin-bottom: 12px;">
+              <label class="field-label">WiFi Password</label>
+              <input type="text" id="qr-input-wifi-pass" class="cyber-input" placeholder="SecretPassword123"
+                style="margin-bottom: 12px;">
+              <label class="field-label">Security Type</label>
+              <select id="qr-input-wifi-type" class="cyber-input">
+                <option value="WPA">WPA/WPA2/WPA3 (Recommended)</option>
+                <option value="WEP">WEP (Legacy)</option>
+                <option value="nopass">None (Open Network)</option>
+              </select>
+            </div>
+
+            <!-- Tab: Contact -->
+            <div id="qr-form-contact" class="qr-form-panel" style="display: none;">
+              <label class="field-label">Full Name</label>
+              <input type="text" id="qr-input-contact-name" class="cyber-input" placeholder="Jane Doe"
+                style="margin-bottom: 12px;">
+              <label class="field-label">Phone Number</label>
+              <input type="tel" id="qr-input-contact-phone" class="cyber-input" placeholder="+1 (555) 019-2834"
+                style="margin-bottom: 12px;">
+              <label class="field-label">Email Address</label>
+              <input type="email" id="qr-input-contact-email" class="cyber-input" placeholder="jane@example.com">
+            </div>
+
+            <div class="btn-row" style="margin-top: 18px;">
+              <button class="btn-primary" onclick="App.handleGenerateQR()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="16" />
+                  <line x1="8" y1="12" x2="16" y2="12" />
+                </svg>
+                Generate QR Code
+              </button>
+            </div>
+          </div>
+
+          <!-- Generated QR Preview Output -->
+          <div class="qr-output-card" id="qr-output-section">
+            <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 14px; color: var(--text-primary);">QR
+              Preview</h4>
+
+            <div class="qr-canvas-wrapper" id="qr-render-area">
+              <!-- Rendered canvas / img -->
+            </div>
+
+            <div class="qr-action-row">
+              <button class="btn-secondary" onclick="App.downloadQRCode()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                Download PNG
+              </button>
+              <button class="btn-secondary" onclick="App.shareQRCode()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="18" cy="5" r="3" />
+                  <circle cx="6" cy="12" r="3" />
+                  <circle cx="18" cy="19" r="3" />
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+                </svg>
+                Share
+              </button>
+            </div>
+
+            <!-- Signature Feature: Scan & Check This QR -->
+            <div class="check-this-qr-box">
+              <div>
+                <div style="font-size: 0.88rem; font-weight: 700; color: var(--text-primary);">Scan & Check This QR
+                </div>
+                <div style="font-size: 0.74rem; color: var(--text-secondary);">Test this QR payload with ScamShield's
+                  safety engine</div>
+              </div>
+              <button class="btn-primary" style="height: 38px; padding: 0 16px; flex: none;"
+                onclick="App.scanGeneratedQR()">
+                Check Safety
+              </button>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ==================== 7. SCAN HISTORY SCREEN ==================== -->
+        <section id="view-history" class="screen-view">
+          <div class="view-header">
+            <div class="view-header-text">
+              <h2>Scan History</h2>
+              <p>Stored locally on your device in LocalStorage.</p>
+            </div>
+          </div>
+
+          <!-- Filters -->
+          <div class="history-filter-scroll">
+            <button class="filter-pill active" data-filter="all" onclick="App.filterHistory('all')">All</button>
+            <button class="filter-pill" data-filter="Message" onclick="App.filterHistory('Message')">Messages</button>
+            <button class="filter-pill" data-filter="Link" onclick="App.filterHistory('Link')">Links</button>
+            <button class="filter-pill" data-filter="Website" onclick="App.filterHistory('Website')">Websites</button>
+            <button class="filter-pill" data-filter="QR" onclick="App.filterHistory('QR')">QR Codes</button>
+          </div>
+
+          <!-- History items list -->
+          <div id="history-items-container" class="history-list">
+            <!-- Dynamically populated -->
+          </div>
+
+          <div class="btn-row btn-row-balanced" style="margin-top: 24px;">
+            <button class="btn-secondary" onclick="App.exportHistory()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Export JSON
+            </button>
+            <button class="btn-secondary" style="color: var(--risk-high);" onclick="App.confirmClearHistory()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="3 6 5 6 21 6" />
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+              </svg>
+              Clear History
+            </button>
+          </div>
+        </section>
+
+        <!-- ==================== 8. AWARENESS SCREEN ==================== -->
+        <section id="view-awareness" class="screen-view">
+          <div class="view-header">
+            <div class="view-header-text">
+              <h2>Scam Awareness</h2>
+              <p>Recognize social engineering tactics and stay ahead of attackers.</p>
+            </div>
+          </div>
+
+          <!-- Awareness Cards Grid -->
+          <div class="awareness-grid">
+
+            <div class="awareness-card">
+              <div class="awareness-card-icon">🔐</div>
+              <h3>1. OTP & Credential Scams</h3>
+              <p><strong>Golden Rule:</strong> Never share One-Time Passwords (OTP) or PINs with anyone. Real banks or
+                delivery agents will never call or message to solicit your verification codes.</p>
+            </div>
+
+            <div class="awareness-card">
+              <div class="awareness-card-icon">🔗</div>
+              <h3>2. Fake & Deceptive Links</h3>
+              <p>Check the exact domain address before clicking. Attackers spoof names using numbers (e.g.
+                <code>paypa1.com</code>) or cheap abuse TLDs like <code>.xyz</code>, <code>.top</code>, or
+                <code>.buzz</code>.
+              </p>
+            </div>
+
+            <div class="awareness-card">
+              <div class="awareness-card-icon">📷</div>
+              <h3>3. QR Code "Quishing"</h3>
+              <p>QR codes can easily redirect you to fraudulent login portals or trigger malicious dialers. Never scan
+                unverified stickers pasted over public parking meters or menus.</p>
+            </div>
+
+            <div class="awareness-card">
+              <div class="awareness-card-icon">⏱️</div>
+              <h3>4. Urgency & Coercion Scams</h3>
+              <p>Messages warning that your account is "suspended immediately" or threatening legal arrest are
+                engineered to provoke uncritical panic. Pause, breathe, and verify independently.</p>
+            </div>
+
+            <div class="awareness-card">
+              <div class="awareness-card-icon">🌐</div>
+              <h3>5. Fake Website Portals</h3>
+              <p>Just because a page has an SSL padlock does not mean it is trustworthy. Anyone can register a free
+                HTTPS certificate on a scam domain. Inspect the full domain name.</p>
+            </div>
+
+            <div class="awareness-card">
+              <div class="awareness-card-icon">🎁</div>
+              <h3>6. Unsolicited Prizes & Gifts</h3>
+              <p>If you didn't enter a lottery, you didn't win one. Demands for "processing fees" or gift card purchases
+                to release lottery winnings are always 100% scams.</p>
+            </div>
+
+          </div>
+
+          <!-- Mini Interactive Quiz: Can You Spot the Scam? -->
+          <div class="quiz-container">
+            <div class="quiz-header">
+              <h3 style="font-size: 1.1rem; font-weight: 800; color: #fff;">Can You Spot the Scam?</h3>
+              <span class="quiz-progress-badge" id="quiz-progress-label">Question 1 of 5</span>
+            </div>
+
+            <div class="quiz-scenario-box">
+              <p class="quiz-scenario-text" id="quiz-scenario-content">
+                Loading quiz scenario...
+              </p>
+            </div>
+
+            <div class="quiz-options-list" id="quiz-options-container">
+              <!-- Dynamic option buttons -->
+            </div>
+
+            <div class="quiz-feedback-box" id="quiz-feedback-area">
+              <div class="feedback-headline" id="feedback-headline-text"></div>
+              <p class="feedback-explanation" id="feedback-explanation-text"></p>
+            </div>
+
+            <div class="btn-row" id="quiz-actions-row" style="display: none;">
+              <button class="btn-primary" id="btn-quiz-next" onclick="App.nextQuizQuestion()">
+                Next Question →
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== 9. PROFILE & SETTINGS SCREEN ==================== -->
+        <section id="view-profile" class="screen-view">
+          <div class="view-header">
+            <div class="view-header-text">
+              <h2>Profile & Settings</h2>
+              <p>Manage application preferences and security settings.</p>
+            </div>
+          </div>
+
+          <!-- Profile Badge -->
+          <div class="profile-hero">
+            <div class="profile-avatar">S</div>
+            <div class="profile-info">
+              <h3>Cyber Defender</h3>
+              <div class="profile-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                Local Shield Active
+              </div>
+              <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">Zero cloud logs. 100% private.
+              </p>
+            </div>
+          </div>
+
+          <!-- App Settings -->
+          <div class="settings-group">
+            <div class="setting-row">
+              <div class="setting-info">
+                <span class="setting-title">Dark Navy Cyber Theme</span>
+                <span class="setting-subtitle">Switch between dark cybersecurity and clean light mode</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="theme-switch" checked onchange="App.handleThemeToggle(this.checked)">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <span class="setting-title">Audio Feedback</span>
+                <span class="setting-subtitle">Play subtle audio alert on high-risk detection</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="sound-switch" checked onchange="App.handleSoundToggle(this.checked)">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <span class="setting-title">Safety Tips In Header</span>
+                <span class="setting-subtitle">Show alert badges when new threats are discovered</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="tips-switch" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Data Management -->
+          <div class="settings-group">
+            <div class="setting-row">
+              <div class="setting-info">
+                <span class="setting-title">Load Sample Scan Dataset</span>
+                <span class="setting-subtitle">Pre-populate history with demo data for presentation testing</span>
+              </div>
+              <button class="btn-secondary" style="height: 36px; padding: 0 14px; font-size: 0.8rem;"
+                onclick="App.loadDemoDataset()">
+                Load Samples
+              </button>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <span class="setting-title">Clear All History & Stats</span>
+                <span class="setting-subtitle">Remove all stored scans from LocalStorage</span>
+              </div>
+              <button class="btn-secondary"
+                style="height: 36px; padding: 0 14px; font-size: 0.8rem; color: var(--risk-high);"
+                onclick="App.confirmClearHistory()">
+                Reset Data
+              </button>
+            </div>
+          </div>
+
+          <!-- About & Privacy -->
+          <div class="settings-group">
+            <div style="padding: 12px 0;">
+              <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 6px;">About ScamShield</h4>
+              <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5;">
+                ScamShield is an open, rule-based cybersecurity safety companion. It evaluates message semantics, domain
+                syntax, and QR payloads entirely in your browser using deterministic algorithms. No messages or links
+                are ever uploaded to any third party.
+              </p>
+              <div style="margin-top: 10px; font-size: 0.75rem; color: var(--text-muted);">
+                Version 1.0.0 • Client-Side Only • Offline Ready
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- ==================== MOBILE BOTTOM NAVIGATION ==================== -->
+      <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+        <button class="mobile-nav-item active" data-target="home" onclick="App.navigateTo('home')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span>Home</span>
+        </button>
+
+        <button class="mobile-nav-item" data-target="history" onclick="App.navigateTo('history')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 14 14" />
+          </svg>
+          <span>History</span>
+        </button>
+
+        <button class="mobile-nav-item" data-target="awareness" onclick="App.navigateTo('awareness')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+          </svg>
+          <span>Awareness</span>
+        </button>
+
+        <button class="mobile-nav-item" data-target="profile" onclick="App.navigateTo('profile')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span>Profile</span>
+        </button>
+      </nav>
+
+    </div>
+  </div>
+
+  <!-- ==================== SCANNING ANIMATION MODAL ==================== -->
+  <div class="modal-overlay" id="scanning-modal" role="dialog" aria-modal="true" aria-labelledby="scanning-title">
+    <div class="scanning-radar-card">
+      <div class="radar-orb">
+        <div class="radar-ring ring-1"></div>
+        <div class="radar-ring ring-2"></div>
+        <div class="radar-sweep"></div>
+        <div class="radar-center-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <path d="m9 12 2 2 4-4" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="scanning-text">
+        <h3 id="scanning-title">Scanning...</h3>
+        <p>Analyzing content against rule-based threat models</p>
+      </div>
+
+      <div class="scanning-steps-list">
+        <div class="scan-step-item" id="step-1">
+          <span class="step-tick-icon">✓</span>
+          <span class="step-text">Reading input content...</span>
+        </div>
+        <div class="scan-step-item" id="step-2">
+          <span class="step-tick-icon">✓</span>
+          <span class="step-text">Analyzing urgency & pattern language...</span>
+        </div>
+        <div class="scan-step-item" id="step-3">
+          <span class="step-tick-icon">✓</span>
+          <span class="step-text">Checking domain & structural signatures...</span>
+        </div>
+        <div class="scan-step-item" id="step-4">
+          <span class="step-tick-icon">✓</span>
+          <span class="step-text">Preparing security report...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SCAN RESULT MODAL / SHEET ==================== -->
+  <div class="modal-overlay" id="result-modal" role="dialog" aria-modal="true" aria-labelledby="result-cat-title">
+    <div class="scanning-radar-card"
+      style="max-width: 520px; text-align: left; padding: 22px; max-height: 90vh; overflow-y: auto;">
+
+      <!-- Result Banner Card Header -->
+      <div class="result-card-header high-risk" id="res-header-banner">
+        <div class="result-badge-row">
+          <div class="result-category-title" id="res-cat-title">
+            <span id="res-cat-icon">⚠️</span>
+            <span id="res-cat-text">High Risk</span>
+          </div>
+          <div class="result-score-pill" id="res-score-pill">
+            <span id="res-score-number">86</span> <span>/ 100</span>
+          </div>
+        </div>
+        <p class="result-tagline" id="res-tagline-text">
+          Suspicious patterns were detected.
+        </p>
+      </div>
+
+      <!-- Result Navigation Tabs -->
+      <div class="result-tabs-bar">
+        <button class="result-tab-btn active" data-pane="details"
+          onclick="App.switchResultTab('details')">Details</button>
+        <button class="result-tab-btn" data-pane="explanation"
+          onclick="App.switchResultTab('explanation')">Explanation</button>
+        <button class="result-tab-btn" data-pane="suggestions"
+          onclick="App.switchResultTab('suggestions')">Suggestions</button>
+      </div>
+
+      <!-- Tab: Details (Detected Issues) -->
+      <div id="res-pane-details" class="result-tab-pane active">
+        <div style="font-size: 0.85rem; font-weight: 700; margin-bottom: 10px; color: var(--text-primary);">
+          Detected Indicators (<span id="res-issues-count">0</span>)
+        </div>
+        <div class="issues-stack" id="res-issues-list">
+          <!-- Populated dynamically -->
+        </div>
+
+        <!-- Extracted Raw Content Preview -->
+        <div class="extracted-content-box">
+          <div class="extracted-box-header">
+            <span id="res-extracted-type">Analyzed Target</span>
+            <button class="copy-mini-btn" onclick="App.copyCurrentResultPayload()" title="Copy to clipboard">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+              </svg>
+            </button>
+          </div>
+          <div class="extracted-text-val" id="res-extracted-val">
+            <!-- Text here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Explanation -->
+      <div id="res-pane-explanation" class="result-tab-pane">
+        <div style="font-size: 0.85rem; font-weight: 700; margin-bottom: 10px; color: var(--text-primary);">
+          Why It May Be Risky
+        </div>
+        <div id="res-explanation-list"
+          style="display: flex; flex-direction: column; gap: 8px; font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5;">
+          <!-- Reasons -->
+        </div>
+      </div>
+
+      <!-- Tab: Suggestions -->
+      <div id="res-pane-suggestions" class="result-tab-pane">
+        <div style="font-size: 0.85rem; font-weight: 700; margin-bottom: 10px; color: var(--text-primary);">
+          Recommended Safety Actions
+        </div>
+        <div id="res-suggestions-list"
+          style="display: flex; flex-direction: column; gap: 8px; font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5;">
+          <!-- Suggestions -->
+        </div>
+      </div>
+
+      <div class="disclaimer-note" style="margin-top: 14px;">
+        <strong>Basic Analysis Only:</strong> Stay cautious before sharing personal or financial information. Never send
+        OTPs or banking credentials over message.
+      </div>
+
+      <!-- Actions Row -->
+      <div class="btn-row btn-row-balanced" style="margin-top: 18px;">
+        <button class="btn-primary" onclick="App.closeResultModal()">
+          Scan Another
+        </button>
+        <button class="btn-secondary" onclick="App.reportScamFeedback()">
+          Flag / Report
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== NOTIFICATION DRAWER ==================== -->
+  <div class="drawer-overlay" id="notification-drawer" onclick="if(event.target === this) App.toggleDrawer(false)">
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <h3 style="font-size: 1rem; font-weight: 700; color: #fff;">Safety Alerts & Tips</h3>
+        <button class="icon-btn" onclick="App.toggleDrawer(false)">✕</button>
+      </div>
+      <div class="drawer-items-list">
+        <div class="drawer-alert-item">
+          <h5>⚠️ Trending: Postal Package Redelivery Scams</h5>
+          <p>Scammers are blasting SMS messages claiming a parcel has an unpaid $1.50 customs fee. Do not tap the link.
+          </p>
+        </div>
+        <div class="drawer-alert-item">
+          <h5>🔒 Multi-Factor Authentication Alert</h5>
+          <p>Never read 6-digit OTP codes aloud or text them back to anyone, even if they claim to be your bank
+            representative.</p>
+        </div>
+        <div class="drawer-alert-item">
+          <h5>📷 QR Code Parking Meter Warnings</h5>
+          <p>Inspect parking meter payment stickers. Fraudulent stickers are often glued over genuine payment QR codes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Message Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Client-side QR Scripts -->
+  <script src="js/lib/qrcode.min.js"></script>
+  <script src="js/lib/jsqr.min.js"></script>
+
+  <!-- Rule Analyzer Script -->
+  <script src="js/rules/analyzer.js"></script>
+
+  <!-- Main Application Script -->
+  <script src="js/app.js"></script>
+</body>
+
+</html>
